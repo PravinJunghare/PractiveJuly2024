@@ -32,9 +32,9 @@ public class ElementUtil {
 
 	public WebElement getElement(By locator) {
 		WebElement element = driver.findElement(locator);
-		// if (Boolean.parseBoolean(DriverFactory.highlight)) {
-		// jsUtil.flash(element);
-		// }
+		 if (Boolean.parseBoolean(DriverFactory.highlight)) {
+		 jsUtil.flash(element);
+		 }
 		return element;
 	}
 

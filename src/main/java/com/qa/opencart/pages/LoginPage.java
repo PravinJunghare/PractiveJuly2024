@@ -59,6 +59,8 @@ public class LoginPage {
 		// driver.findElement(loginBtn).click();
 
 		// ***---Replaced driver by elementUtil--- **//
+		System.out.println("App Credentials are " +un+ ":" +pwd);
+		
 		eleUtil.waitForElementVisible(emailId, AppConstant.DEFAULT_MEDIUM_TIMEOUT).sendKeys(un);
 		eleUtil.doSendKeys(password, pwd);
 		eleUtil.doClick(loginBtn);
