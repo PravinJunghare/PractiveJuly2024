@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.qa.opencart.base.BaseTest;
@@ -53,7 +54,49 @@ public class AccountsPageTest extends BaseTest {
 		System.out.println("Actual AccPage header list" + actualAccHeaderList);
 		System.out.println("Expected AccPage header list " + AppConstant.EXPECTED_ACCOUNTPAGE_HEADERS_LIST);
 		Assert.assertEquals(actualAccHeaderList, AppConstant.EXPECTED_ACCOUNTPAGE_HEADERS_LIST);
+	}
+
+	@DataProvider
+	public Object[][] getProductData() {
+		return new Object[][] { { "MacBook" }, { "iMac" }, { "Apple" }, { "Samsung" } };
+	}
+
+	@Test(dataProvider = "getProductData")
+	public void searchProductCountTest(String searchKey) {
+
+		searchPage = accountsPage.performSearch(searchKey);
+		Assert.assertTrue(searchPage.getSearchProductCount() > 0);
+		// searchPage = accountsPage.performSearch("MacBook");
+		// Assert.assertTrue(searchPage.getSearchProductCount()> 0);
 
 	}
+
+	@DataProvider
+	public Object[][] getProductTestData() {
+		return new Object[][] { { "MacBook", "MacBook Pro" }, { "MacBook", "MacBook Air" }, { "iMac", "iMac" },
+				{ "Apple", "Apple Cinema 30\"" }, };
+	}
+
+	@Test(dataProvider = "getProductTestData")
+	public void searchProductTest(String searchKey, String productName) {
+		// *****Using dataprovider******//
+		searchPage = accountsPage.performSearch(searchKey);
+		if (searchPage.getSearchProductCount() > 0) {
+			productInfoPage = searchPage.selectProduct(productName);
+			String accProductHeaderValue = productInfoPage.getProductHeaderValue();
+			Assert.assertEquals(accProductHeaderValue, productName);
+		}
+
+	}
+	// *** hardcoded***//
+	/*
+	 * public void searchProductTest() { searchPage =
+	 * accountsPage.performSearch("MacBook"); if (searchPage.getSearchProductCount()
+	 * > 0) { productInfoPage = searchPage.selectProduct("MaBook Pro"); String
+	 * accProductHeaderValue = productInfoPage.getProductHeaderValue();
+	 * Assert.assertEquals(accProductHeaderValue, "MacBook Pro"); }
+	 * 
+	 * }
+	 */
 
 }
