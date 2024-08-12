@@ -1,6 +1,5 @@
 package com.qa.opencart.tests;
 
-
 import java.util.Map;
 
 import org.testng.Assert;
@@ -34,4 +33,76 @@ public class ProductInfoPageTest extends BaseTest {
 		int actualImagecount = productInfoPage.getImageCount();
 		Assert.assertEquals(actualImagecount, imagecount);
 	}
+
+	@Test
+	public void productInfoTest() {
+		searchPage = accountsPage.performSearch("MacBook");
+		productInfoPage = searchPage.selectProduct("MacBook Pro");
+		Map<String, String> actualproductInfoMap = productInfoPage.getProdcuctInfo();
+		// System.out.println(actualproductInfoMap);
+
+		softAssert.assertEquals(actualproductInfoMap.get("Brand"), "Apple");
+		softAssert.assertEquals(actualproductInfoMap.get("Product Code"), "Product 18");
+		softAssert.assertEquals(actualproductInfoMap.get("productname"), "MacBook Pro");
+		softAssert.assertEquals(actualproductInfoMap.get("productprice"), "$2,000.00");
+		softAssert.assertAll();
+
+		// Hard Assertions
+		/*
+		 * Assert.assertEquals(actualproductInfoMap.get("Brand"), "Apple");
+		 * Assert.assertEquals(actualproductInfoMap.get("Product Code"), "Product 18");
+		 * Assert.assertEquals(actualproductInfoMap.get("productname"), "MacBook Pro");
+		 * Assert.assertEquals(actualproductInfoMap.get("productprice"), "$2,000.
+		 */
+	}
+
+
+	@Test()
+	public void addToCartSingleProdcuttTest() {
+		searchPage = accountsPage.performSearch("MacBook");
+		productInfoPage = searchPage.selectProduct("MacBook Pro");
+		productInfoPage.enterQuantity(2);
+		String actualaddtoCartMsg = productInfoPage.addProductTocart();
+		// Success: You have added MacBook Pro to your shopping cart!
+		softAssert.assertTrue(actualaddtoCartMsg.contains("Success"));
+		softAssert.assertTrue(actualaddtoCartMsg.contains("MacBook Pro"));
+		softAssert.assertTrue(actualaddtoCartMsg.indexOf("Success") >= 0);
+		// softAssert.assertTrue(actualaddtoCartMsg.indexOf(prodcutname )>= 0);
+		softAssert.assertEquals(actualaddtoCartMsg, "Success: You have added MacBook Pro to your shopping cart");
+		softAssert.assertAll();
+	}
+
+	
+	@DataProvider
+	public Object[][] getAddToCartTestData() {
+		return new Object[][] { { "MacBook", "MacBook Pro", 1 }, { "MacBook", "MacBook Air", 2 }, { "iMac", "iMac", 3 },
+
+		};
+	}
+
+	@Test(dataProvider = "getAddToCartTestData")
+	public void addToCartMultipleProductTest(String searchkey, String prodcutname, int quantity) {
+		// searchPage = accountsPage.performSearch("MacBook");
+		// productInfoPage = searchPage.selectProduct("MacBook Pro");
+
+		searchPage = accountsPage.performSearch(searchkey);
+		productInfoPage = searchPage.selectProduct(prodcutname);
+		productInfoPage.enterQuantity(quantity);
+		String actualaddtoCartMsg = productInfoPage.addProductTocart();
+		// Success: You have added MacBook Pro to your shopping cart!
+		// softAssert.assertTrue(actualaddtoCartMsg.contains("Success"));
+		// softAssert.assertTrue(actualaddtoCartMsg.contains("MacBook Pro"));
+		softAssert.assertTrue(actualaddtoCartMsg.indexOf("Success") >= 0);
+		softAssert.assertTrue(actualaddtoCartMsg.indexOf(prodcutname) >= 0);
+		softAssert.assertEquals(actualaddtoCartMsg,
+				"Success: You have added " + prodcutname + " to your shopping cart");
+		softAssert.assertAll();
+	}
+
+	
+	
+	
+	
+	
+	
 }

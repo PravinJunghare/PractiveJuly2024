@@ -56,11 +56,14 @@ public class AccountsPageTest extends BaseTest {
 		Assert.assertEquals(actualAccHeaderList, AppConstant.EXPECTED_ACCOUNTPAGE_HEADERS_LIST);
 	}
 
+	// Added data provider to remove the hard coded values
+
 	@DataProvider
 	public Object[][] getProductData() {
 		return new Object[][] { { "MacBook" }, { "iMac" }, { "Apple" }, { "Samsung" } };
 	}
 
+   // Mapping of data provider with test case
 	@Test(dataProvider = "getProductData")
 	public void searchProductCountTest(String searchKey) {
 
