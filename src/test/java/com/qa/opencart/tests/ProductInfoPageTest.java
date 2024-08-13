@@ -58,7 +58,7 @@ public class ProductInfoPageTest extends BaseTest {
 
 
 	@Test()
-	public void addToCartSingleProdcuttTest() {
+	public void addToCartSingleProductTest() {
 		searchPage = accountsPage.performSearch("MacBook");
 		productInfoPage = searchPage.selectProduct("MacBook Pro");
 		productInfoPage.enterQuantity(2);
