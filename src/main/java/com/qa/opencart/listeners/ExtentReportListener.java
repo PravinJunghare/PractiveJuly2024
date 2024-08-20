@@ -48,7 +48,7 @@ public class ExtentReportListener implements ITestListener {
 		extentReports.setSystemInfo("Author", "Pravin Junghare");
 		extentReports.setSystemInfo("Build#", "1.1");
 		extentReports.setSystemInfo("Team", "OpenCart QA Team");
-		extentReports.setSystemInfo("Customer Name", "NAL");
+		extentReports.setSystemInfo("Customer Name", "OpenCart Pvtt Ltd");
 
 
 		//extentReports.setSystemInfo("ENV NAME", System.getProperty("env"));
