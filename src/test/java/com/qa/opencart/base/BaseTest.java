@@ -1,3 +1,4 @@
+
 package com.qa.opencart.base;
 
 import java.util.Properties;
@@ -15,7 +16,6 @@ import com.qa.opencart.pages.RegistrationPage;
 import com.qa.opencart.pages.SearchPage;
 
 public class BaseTest {
-
 	DriverFactory df;
 	WebDriver driver;
 	protected Properties prop;
@@ -26,21 +26,20 @@ public class BaseTest {
 	protected RegistrationPage registrationPage;
 
 	protected SoftAssert softAssert;
-	
-	
+
 	@BeforeTest
 	public void setUp() {
-		df = new DriverFactory();// created driver factory object
-		prop = df.initProp();// df.initProp() will give prop reference
-		// driver = df.initDriver("chrome");// to call initDriver method to get driver
+		df = new DriverFactory();
+		prop = df.initProp();
+		// driver = df.initDriver("chrome");
 		driver = df.initDriver(prop);
 		loginPage = new LoginPage(driver);
 		softAssert = new SoftAssert();
+
 	}
 
 	@AfterTest
-	public void teardown() {
+	public void tearDown() {
 		driver.quit();
 	}
-
 }

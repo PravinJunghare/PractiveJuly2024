@@ -4,37 +4,55 @@
 <suite name="Opencart App Test Regression Suite" thread-count="4"
 	parallel="tests" verbose="4">
 
-	<listeners>
-		<listener class-name="com.qa.opencart.listeners.ExtentReportListener" />
-		<listener class-name="com.qa.opencart.listeners.TestAllureListener" />
 
+	<listeners>
+		<listener
+			class-name="com.qa.opencart.listeners.ExtentReportListener" />
+		<listener
+			class-name="com.qa.opencart.listeners.TestAllureListener" />
+
+		<listener
+			class-name="com.qa.opencart.listeners.AnnotationTransformer" />
 	</listeners>
 
+	<test name="Login Page Test_chrome_90.0">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+		<parameter name="testcasename" value="Login Page Test" />
 
-	<test name="Login Page Test">
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
+	
+<test name="AccountsPageTest_90.0">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+		<parameter name="testcasename" value="AccountsPageTest" />
 
-	<test name="Accounts Page Test">
 		<classes>
 			<class name="com.qa.opencart.tests.AccountsPageTest" />
 		</classes>
 	</test>
+	
+	<test name="ProductInfoPageTest_90.0">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+		<parameter name="testcasename" value="ProductInfoPageTest" />
 
-
-	<test name="ProdcutInfo Page Test">
 		<classes>
 			<class name="com.qa.opencart.tests.ProductInfoPageTest" />
 		</classes>
 	</test>
+		<test name="RegistrationPageTest_90.0">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+		<parameter name="testcasename" value="RegistrationPageTest" />
 
-	<test name="Registration Page Test">
 		<classes>
 			<class name="com.qa.opencart.tests.RegistrationPageTest" />
 		</classes>
 	</test>
-
-
+		
+	
 </suite>

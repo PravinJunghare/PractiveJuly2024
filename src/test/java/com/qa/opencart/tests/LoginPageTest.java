@@ -7,6 +7,15 @@ import org.testng.annotations.Test;
 import com.qa.opencart.base.BaseTest;
 import com.qa.opencart.constants.AppConstant;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
+
+@Epic("EPIC -100: Design Login for OpenCart Application ")
+@Story("User Story US-01: Design Features for Login Page")
+@Severity(SeverityLevel.TRIVIAL)
 public class LoginPageTest extends BaseTest {
 
 	@Test(priority = 1)
