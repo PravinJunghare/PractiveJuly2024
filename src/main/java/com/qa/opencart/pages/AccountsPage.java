@@ -35,7 +35,7 @@ public class AccountsPage {
 		// String title =
 		// eleUtil.waitForTitleIsAndFetch(AppConstant.DEFAULT_MEDIUM_TIMEOUT,
 		// AppConstant.ACCOUNTS_PAGE_TITLE_VALUE);
-		System.out.println("Accountpage title is:" + title);
+		System.out.println("Accountpage title is :" + title);
 		return title;
 	}
 
@@ -45,7 +45,7 @@ public class AccountsPage {
 		// String url =
 		// eleUtil.waitForURLContainsAndFetch(AppConstant.DEFAULT_MEDIUM_TIMEOUT,
 		// AppConstant.ACCOUNTS_PAGE_URL_FRACTION_VALUE);
-		System.out.println("Loginpage url is :" + url);
+		System.out.println("AccountPage url is :" + url);
 		return url;
 	}
 
